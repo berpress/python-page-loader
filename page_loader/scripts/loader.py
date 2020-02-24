@@ -2,6 +2,7 @@
 import argparse
 
 from page_loader.client import get_response
+from page_loader.utils import write_data_to_file, get_file_name_from_url
 
 
 def main():
@@ -13,11 +14,12 @@ def main():
     url = args.url
     response = get_response(url)
     if response.status_code == 200:
-        pass
+        file_name = get_file_name_from_url(url)
+        write_data_to_file(response.text, file_name=file_name,
+                           _dir=output_file)
     else:
         raise Exception(f"Cant load page {url}, status code is "
                         f"{response.status_code}")
-    pass
 
 
 if __name__ == '__main__':
