@@ -1,11 +1,10 @@
 language: python
 python: 3.6
 
+
 env:
   global:
-    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi) #noga
-    - CODECLIMATE_REPO_TOKEN=[token]
-    - CC_TEST_REPORTER_ID=[id]
+    - CC_TEST_REPORTER_ID=a252af86578cdb3eebca19c65c46844a04290dc50a52c1fa20092c964bbbfdc6 #noga
 
 install: make
 
@@ -25,6 +24,5 @@ script:
   - make pytest
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - ./cc-test-reporter after-build format-coverage coverage.xml -t coverage.py
-  - ./cc-test-reporter after-build upload-coverage
+  - ./cc-test-reporter format-coverage -d -t coverage.py coverage.xml after-build $TRAVIS_TEST_RESULT #noga
+  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi #noga
