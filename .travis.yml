@@ -1,6 +1,12 @@
 language: python
 python: 3.6
 
+env:
+  global:
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi) #noga
+    - CODECLIMATE_REPO_TOKEN=[token]
+    - CC_TEST_REPORTER_ID=[id]
+
 install: make
 
 before_install:
@@ -9,8 +15,16 @@ before_install:
 install:
   - poetry install
 
-script:
-  - make lint
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter #noga
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
+  - make lint
   - make pytest
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build format-coverage coverage.xml -t coverage.py
+  - ./cc-test-reporter after-build upload-coverage
