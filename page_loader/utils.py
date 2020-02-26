@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup
 from page_loader.client import get_response
 
 
-def write_data_to_file(data: str, file_name: str, _dir=None, file_type='html') -> str:
+def write_data_to_file(data: str, file_name: str, _dir=None,
+                       file_type='html') -> str:
     '''
     :param file_type: file type
     :param data: html to write in file
@@ -59,7 +60,7 @@ def set_local_links(data: str, path_to_file: str, url: str) -> str:
                 file_name = get_file_name_from_url(link)
                 path_link = write_data_to_file(data=res.text,
                                                file_name=file_name,
-                                               _dir=f'{path_to_file}_files'
-                                               , file_type=file_type)
+                                               _dir=f'{path_to_file}_files',
+                                               file_type=file_type)
                 tag['src'] = path_link
     return str(soup)
