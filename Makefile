@@ -13,3 +13,6 @@ build:
 
 publish:
 	@poetry publish -r pypi_test
+
+coverage:
+	@poetry coverage run -m pytest
