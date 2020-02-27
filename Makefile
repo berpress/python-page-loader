@@ -11,4 +11,4 @@ publish:
 	@poetry publish -r pypi_test
 
 pytest:
-	poetry run pytest --cov=tests/ --cov-report xml
+	poetry run pytest --cov=tests/ --log-cli-level=10 --cov-report xml

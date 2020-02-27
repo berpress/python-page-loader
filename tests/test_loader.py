@@ -1,8 +1,8 @@
 import os
 from os import path
 
-from page_loader.client import get_response
-from page_loader.utils import get_file_name_from_url, write_data_to_file, \
+from page_loader.utils.client import get_response
+from page_loader.utils.utils import get_file_name_from_url, write_data_to_file, \
     set_local_links
 
 TEST_URL = 'https://hexlet.io/courses'
