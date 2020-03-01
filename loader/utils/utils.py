@@ -6,7 +6,7 @@ import re
 from bs4 import BeautifulSoup
 import logging
 
-from page_loader.utils.client import get_response, check_response_answer
+from loader.utils.client import get_response, check_response_answer
 
 logger = logging.getLogger()
 
