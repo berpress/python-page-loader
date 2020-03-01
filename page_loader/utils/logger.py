@@ -21,4 +21,3 @@ def run_logger(level=logging.INFO):
     err_handler.setLevel(logging.ERROR)
     err_handler.setFormatter(formatter)
     logger.addHandler(err_handler)
-
