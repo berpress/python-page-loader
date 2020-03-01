@@ -8,6 +8,8 @@ import logging
 
 from page_loader.utils.client import get_response
 
+logger = logging.getLogger()
+
 
 def write_data_to_file(data: str, file_name: str, _dir=None,
                        file_type='html') -> str:
@@ -20,15 +22,15 @@ def write_data_to_file(data: str, file_name: str, _dir=None,
     '''
     if _dir is None:
         _dir = tempfile.TemporaryDirectory().name
-        logging.debug('Create temp folder %s', _dir)
+        logger.debug('Create temp folder %s', _dir)
     elif not os.path.exists(_dir):
         os.makedirs(_dir)
         logging.debug('Create %s folder', _dir)
     file_path = f"{path.join(_dir, file_name)}.{file_type}"
-    logging.info('Create %s folder', _dir)
+    logger.info('Create %s folder', _dir)
     with open(f'{file_path}', "w") as file:
         file.write(data)
-        logging.info('Write data to %s file', file_path)
+        logger.info('Write data to %s file', file_path)
     return file_path
 
 
@@ -43,7 +45,7 @@ def get_file_name_from_url(url: str) -> str:
     else:
         file_name = f'{pars_file_name.hostname}{pars_file_name.path}'
     file_name_only_w_d = re.sub(r'[^\w|\d]', '-', file_name)
-    logging.info('Get file name %s from %s', file_name_only_w_d, url)
+    logger.info('Get file name %s from %s', file_name_only_w_d, url)
     return file_name_only_w_d
 
 
@@ -57,23 +59,23 @@ def set_local_links(data: str, path_to_file: str, url: str) -> str:
     soup = BeautifulSoup(data, 'html.parser')
     for tag in soup.findAll(re.compile("(link|script|img)")):
         link = tag.get('src')
-        logging.debug('Find link to file %s', link)
         if link is not None and link[:1] == '/':
+            logger.debug('Find link to file %s', link)
             url = urllib.parse.urlparse(url)
-            logging.debug('Get url %s', url)
+            logger.debug('Get url %s', url)
             download_link = f'{url.scheme}://{url.hostname}{link}'
-            logging.info('Get download link %s', download_link)
+            logger.info('Get download link %s', download_link)
             res = get_response(download_link)
             if res.status_code == 200:
-                logging.debug('Status code is  200, GET %s', download_link)
+                logger.debug('Status code is  200, GET %s', download_link)
                 file_type = re.split(r'\.', link)[-1]
                 file_name = get_file_name_from_url(link)
-                logging.debug('File type is %s, file name is %s', file_type,
-                              file_name)
+                logger.debug('File type is %s, file name is %s', file_type,
+                             file_name)
                 path_link = write_data_to_file(data=res.text,
                                                file_name=file_name,
                                                _dir=f'{path_to_file}_files',
                                                file_type=file_type)
                 tag['src'] = path_link
-                logging.info('Change link to %s', path_link)
+                logger.info('Change link to %s', path_link)
     return str(soup)
