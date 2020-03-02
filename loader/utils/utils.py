@@ -28,7 +28,7 @@ def write_data_to_file(data: str, file_name: str, file_dir=None,
             os.makedirs(file_dir)
             logging.debug('Create %s folder', file_dir)
         except OSError:
-            logging.error('Error to create %s folder', file_dir)
+            logger.error('Error to create %s folder', file_dir)
             raise OSError('Error to create folder')
     file_path = f"{path.join(file_dir, file_name)}.{file_type}"
     logger.info('Create %s folder', file_dir)
@@ -37,7 +37,7 @@ def write_data_to_file(data: str, file_name: str, file_dir=None,
             file.write(data)
             logger.info('Write data to %s file', file_path)
     except IOError:
-        logging.error('Error to create %s filer', file_path)
+        logger.error('Error to create %s filer', file_path)
         raise OSError('Error to create file')
     return file_path
 

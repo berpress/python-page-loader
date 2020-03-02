@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "litovsky-page-loader"
-version = "0.1.8"
+version = "0.1.10"
 description = "Page Loader"
 authors = ["Alexander <berpress@gmail.com>"]
 packages = [{ include = "loader" }]
