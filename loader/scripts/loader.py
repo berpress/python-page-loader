@@ -10,7 +10,7 @@ from loader.utils.logger import run_logger
 from loader.utils.utils import write_data_to_file, \
     get_file_name_from_url, set_local_links
 
-run_logger()
+
 logger = logging.getLogger()
 
 
@@ -27,6 +27,7 @@ def main():
     logging_level = args.logging_level
     if logging_level is None:
         logging_level = 20
+    run_logger(logging_level)
     logger.setLevel(logging_level)
     logger.debug('Set logging level %s (NOTSET 0, CRITICAL 50)', logging_level)
     with Bar('Processing load page', max=100) as bar:
