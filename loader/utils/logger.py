@@ -15,9 +15,12 @@ def run_logger(level=logging.INFO):
     info_handler = logging.StreamHandler(sys.stdout)
     info_handler.setLevel(level)
     info_handler.setFormatter(formatter)
+    info_handler.addFilter(lambda rec: rec.levelno == level)
     logger.addHandler(info_handler)
     # Logger ERROR
     err_handler = logging.StreamHandler(sys.stderr)
     err_handler.setLevel(logging.ERROR)
     err_handler.setFormatter(formatter)
+    err_handler.addFilter(lambda rec: rec.levelno == logging.ERROR)
     logger.addHandler(err_handler)
+
