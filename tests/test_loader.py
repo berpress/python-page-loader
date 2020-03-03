@@ -4,7 +4,7 @@ from os import path
 
 import pytest
 
-from loader.utils.client import get_response, check_response_answer
+from loader.client import get_response, check_response_answer
 from loader.utils.utils import get_file_name_from_url, write_data_to_file, \
     set_local_links
 

@@ -1,14 +1,9 @@
 #!/usr/bin/env python
 import argparse
 import logging.config
-from os import path
 import sys
-from progress.bar import ChargingBar
 
-from loader.utils.client import get_response, check_response_answer
-from loader.utils.logger import run_logger
-from loader.utils.utils import write_data_to_file, \
-    get_file_name_from_url, set_local_links
+from loader.utils.engine_loader import write_html_to_files
 
 
 logger = logging.getLogger()
@@ -27,33 +22,7 @@ def main():
     logging_level = args.logging_level
     if logging_level is None:
         logging_level = 20
-    run_logger(logging_level)
-    logger.setLevel(logging_level)
-    logger.debug('Set logging level %s (NOTSET 0, CRITICAL 50)', logging_level)
-    bar = ChargingBar('Processing', max=100)
-    response = get_response(url)
-    if logging_level > 20:
-        bar.next(30)
-    logger.debug('Output file is %s, download from %s', output_file,
-                 url)
-    status_code = response.status_code
-    if not check_response_answer(status_code):
-        logger.error('Error, because status code is %s', status_code)
-        sys.exit(1)
-    logger.debug('Status code is 200, GET %s', url)
-    file_name = get_file_name_from_url(url)
-    path_to_file = path.join(output_file, file_name)
-    if logging_level > 20:
-        bar.next(30)
-    edited_html = set_local_links(response.text, path_to_file, url)
-    write_data_to_file(edited_html, file_name=file_name,
-                       file_dir=output_file)
-    if logging_level > 20:
-        bar.next(40)
-    logger.info('Finish write data to %s file in %s folder', file_name,
-                output_file)
-    if logging_level > 20:
-        bar.finish()
+    write_html_to_files(url=url, output_file=output_file, level=logging_level)
     sys.exit(0)
 
 
