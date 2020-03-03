@@ -22,8 +22,10 @@ def main():
     logging_level = args.logging_level
     if logging_level is None:
         logging_level = 20
-    write_html_to_files(url=url, output_file=output_file, level=logging_level)
-    sys.exit(0)
+    if write_html_to_files(url=url, output_file=output_file,
+                           level=logging_level):
+        sys.exit(0)
+    sys.exit(1)
 
 
 if __name__ == '__main__':

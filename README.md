@@ -39,7 +39,7 @@ python3 -m pip install --user --index-url https://test.pypi.org/simple --extra-i
 ```
 Результат
 ``` sh
-    2020-03-03 21:35:38,897 - root - INFO - Get file name hexlet-io-courses from https://hexlet.io/courses
+2020-03-03 21:35:38,897 - root - INFO - Get file name hexlet-io-courses from https://hexlet.io/courses
 2020-03-03 21:35:39,003 - root - INFO - Get download link https://hexlet.io/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js
 2020-03-03 21:35:39,249 - root - INFO - Get file name cdn-cgi-scripts-5c5dd728-cloudflare-static-email-decode-min from /cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js
 2020-03-03 21:35:39,249 - root - INFO - Create /var/tmp/hexlet-io-courses_files folder

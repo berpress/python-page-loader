@@ -1,5 +1,4 @@
 import logging
-import sys
 from os import path
 
 from progress.bar import ChargingBar
@@ -12,12 +11,12 @@ from loader.utils.utils import set_local_links, get_file_name_from_url, \
 logger = logging.getLogger()
 
 
-def write_html_to_files(url: str, output_file: str, level=20):
+def write_html_to_files(url: str, output_file: str, level=20) -> bool:
     '''
     :param url: download url
     :param output_file: file to write
     :param level: level logging
-    :return: None
+    :return: return True, if write page to disk, else False
     '''
     run_logger(level)
     logger.setLevel(level)
@@ -31,7 +30,7 @@ def write_html_to_files(url: str, output_file: str, level=20):
     status_code = response.status_code
     if not check_response_answer(status_code):
         logger.error('Error, because status code is %s', status_code)
-        sys.exit(1)
+        return False
     logger.debug('Status code is 200, GET %s', url)
     file_name = get_file_name_from_url(url)
     path_to_file = path.join(output_file, file_name)
@@ -45,3 +44,4 @@ def write_html_to_files(url: str, output_file: str, level=20):
                 output_file)
     if level > 20:
         bar.finish()
+    return True
