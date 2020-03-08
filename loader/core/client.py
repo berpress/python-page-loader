@@ -14,11 +14,11 @@ def get_response(url: str) -> Response:
     return response
 
 
-def check_response_answer(status_code: int):
-    '''
+def check_status(status_code: int):
+    """
     :param status_code: response status code
     :return: if status code is 400 or 500 then return HTTPException
-    '''
+    """
     if status_code == 200:
         logger.debug('Status code is 200')
         return status_code
