@@ -44,11 +44,11 @@ If the logging level is above DEBUG and INFO, the progress of the download will 
 
 The utility has return codes
 
-0. - execution was successful
-1. - incorrect logging level
-2. - execution was interrupted by the user
-3. - execution was aborted due to a file error
-4. - execution was aborted due to a network error
+- execution was successful **0**
+- incorrect logging level **1**
+- execution was interrupted by the user **2**
+- execution was aborted due to a file error **3**
+- execution was aborted due to a network error **4**
 
 [![asciicast](https://asciinema.org/a/XYE7IARob3mkXYvxawLk7u1QA.svg)](https://asciinema.org/a/XYE7IARob3mkXYvxawLk7u1QA)
 
