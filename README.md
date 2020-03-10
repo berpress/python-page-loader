@@ -12,7 +12,8 @@
 python3 -m pip install --user --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple litovsky-page-loader
 
 ```
-2. How to use
+2. How to use. 
+
 The utility accepts one required parameter as an input - the url of the page to download. As a result, the page is downloaded and local resources are saved, if any.
 Example
 ``` sh
@@ -42,11 +43,12 @@ Result
 If the logging level is above DEBUG and INFO, the progress of the download will be displayed. For more information see https://docs.python.org/3/library/logging.html#logging-levels
 
 The utility has return codes
-0 - execution was successful
-1 - incorrect logging level
-2 - execution was interrupted by the user
-3 - execution was aborted due to a file error
-4 - execution was aborted due to a network error
+
+0. - execution was successful
+1. - incorrect logging level
+2. - execution was interrupted by the user
+3. - execution was aborted due to a file error
+4. - execution was aborted due to a network error
 
 [![asciicast](https://asciinema.org/a/XYE7IARob3mkXYvxawLk7u1QA.svg)](https://asciinema.org/a/XYE7IARob3mkXYvxawLk7u1QA)
 
