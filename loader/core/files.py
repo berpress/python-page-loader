@@ -6,7 +6,7 @@ import re
 from bs4 import BeautifulSoup
 import logging
 
-from loader.core.client import get_response, check_status
+from loader.core.client import run_requests, check_status
 
 logger = logging.getLogger()
 
@@ -48,7 +48,7 @@ def file_to_url(url: str) -> str:
     return file_name_only_w_d
 
 
-def page_conversion(data: str, path_to_file: str, url: str):
+def convert_page(data: str, path_to_file: str, url: str):
     """
     :param data: response.text
     :param path_to_file: path to file
@@ -60,11 +60,8 @@ def page_conversion(data: str, path_to_file: str, url: str):
     for tag in soup.findAll(re.compile("(link|script|img)")):
         link = tag.get('src')
         if link is not None and link[:1] == '/':
-            logger.debug('Find link to file %s', link)
             url = urllib.parse.urlparse(url)
-            logger.debug('Get url %s', url)
             download_link = f'{url.scheme}://{url.hostname}{link}'
-            logger.info('Get download link %s', download_link)
             file_type = re.split(r'\.', link)[-1]
             file_name = file_to_url(link)
             logger.debug('File type is %s, file name is %s', file_type,
@@ -104,7 +101,7 @@ def save_page_data(data: list):
     """
     for i in data:
         url, file_path, file_dir, file_type = i
-        res = get_response(url)
+        res = run_requests(url)
         check_status(res.status_code)
         write_to_file(res.text, file_name=file_path, file_dir=file_dir,
                       file_type=file_type)

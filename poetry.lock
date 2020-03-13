@@ -38,17 +38,6 @@ lxml = ["lxml"]
 
 [[package]]
 category = "main"
-description = "Dummy package for Beautiful Soup"
-name = "bs4"
-optional = false
-python-versions = "*"
-version = "0.0.1"
-
-[package.dependencies]
-beautifulsoup4 = "*"
-
-[[package]]
-category = "main"
 description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
 optional = false
@@ -323,7 +312,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d85c7768fa12372a695da6943c36ca91985dfd03eefe9467850f9516ec051063"
+content-hash = "edbe8e6576155d0d4ee018622b312b842b98ac4d110bb6343e06263178459b49"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -339,9 +328,6 @@ beautifulsoup4 = [
     {file = "beautifulsoup4-4.8.2-py2-none-any.whl", hash = "sha256:e1505eeed31b0f4ce2dbb3bc8eb256c04cc2b3b72af7d551a4ab6efd5cbe5dae"},
     {file = "beautifulsoup4-4.8.2-py3-none-any.whl", hash = "sha256:9fbb4d6e48ecd30bcacc5b63b94088192dcda178513b2ae3c394229f8911b887"},
     {file = "beautifulsoup4-4.8.2.tar.gz", hash = "sha256:05fd825eb01c290877657a56df4c6e4c311b3965bda790c613a3d6fb01a5462a"},
-]
-bs4 = [
-    {file = "bs4-0.0.1.tar.gz", hash = "sha256:36ecea1fd7cc5c0c6e4a1ff075df26d50da647b75376626cc186e2212886dd3a"},
 ]
 certifi = [
     {file = "certifi-2019.11.28-py2.py3-none-any.whl", hash = "sha256:017c25db2a153ce562900032d5bc68e9f191e44e9a0f762f373977de9df1fbb3"},

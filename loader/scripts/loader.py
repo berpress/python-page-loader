@@ -38,4 +38,3 @@ if __name__ == '__main__':
         sys.exit(3)
     except HTTPException:
         sys.exit(4)
-    sys.exit(0)

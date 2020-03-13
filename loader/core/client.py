@@ -8,7 +8,7 @@ from requests import Response
 logger = logging.getLogger()
 
 
-def get_response(url: str) -> Response:
+def run_requests(url: str) -> Response:
     response = requests.get(url)
     logger.debug('GET url %s', url)
     return response
